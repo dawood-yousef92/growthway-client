@@ -1,0 +1,71 @@
+<!-- <div class="row py-5">
+    <div class="col-12">
+        <h1>Add Shipping Address</h1>
+    </div>
+    <div class="col-12">
+        <form class="form" [formGroup]="createShippingAddress" novalidate="novalidate" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <mat-form-field class="w-100">
+                        <input formControlName="commercialName" matInput placeholder="Company Name" required/>    
+                        <mat-error
+                            [ngTemplateOutlet]="formError"
+                            [ngTemplateOutletContext]="{
+                            validation: 'required',
+                            message: 'Company name is required',
+                            control: createCompany.controls['commercialName']
+                            }"
+                        ></mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <mat-form-field class="w-100">
+                        <mat-select formControlName="countryId" placeholder="Country" (selectionChange)="getCities($event)" required>
+                            <mat-option *ngFor="let country of countries" [value]="country.id" [ngClass]="{'d-none': !country?.name?.toLowerCase()?.includes(countriesFilter?.toLowerCase())}">
+                                <div class="d-flex align-items-center">
+                                    <span class="symbol symbol-20 mr-3"><img [src]="country.flag"></span>{{country.name}}
+                                </div>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <mat-form-field class="w-100">
+                        <mat-select formControlName="cityId" placeholder="City" required>
+                            <mat-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <mat-form-field class="w-100">
+                        <input formControlName="phone" type="text" matInput placeholder="Phone" required/>
+                        <span *ngIf="getCountryCode()" matPrefix class="mr-4">+{{getCountryCode()}}</span>  
+                        <mat-error
+                            [ngTemplateOutlet]="formError"
+                            [ngTemplateOutletContext]="{
+                            validation: 'pattern',
+                            message: 'Phone is invalid',
+                            control: createCompany.controls['phone']
+                            }"
+                        ></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success btn-lg px-5" [disabled]="createShippingAddress.invalid">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+  <mat-error *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+    <div class="fv-plugins-message-container">
+      <div class="fv-help-block">
+        {{ message }}
+      </div>
+    </div>
+  </mat-error>
+</ng-template> -->
