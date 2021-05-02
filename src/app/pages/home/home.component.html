@@ -15,10 +15,11 @@
                                     {{cat.name}}
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <div *ngIf="cat.categories?.length > 0" [ngTemplateOutlet]="subCat" [ngTemplateOutletContext]="{categories:cat.categories}">
+                            <div *ngIf="cat.categories?.length > 0" [ngTemplateOutlet]="subCat"
+                                [ngTemplateOutletContext]="{categories:cat.categories}">
                             </div>
                         </mat-expansion-panel>
-                    </mat-accordion> 
+                    </mat-accordion>
                 </div>
             </mat-expansion-panel>
         </mat-accordion>
@@ -50,10 +51,12 @@
             </div>
             <div class="section-content">
                 <ngx-slick-carousel class="carousel cat-slider" #slickModal2="slick-carousel" [config]="slideConfig2">
-                    <div ngxSlickItem *ngFor="let slide of categories" class="slide">
+                    <div ngxSlickItem *ngFor="let slide of categoriesArr" class="slide">
                         <a class="cat-slide" href="#">
-                            <div class="slide-img" style="background-image:url('../../../assets/images/Capture4.PNG')"></div>
-                            <h3 class="slide-title">{{slide.name}}</h3>
+                            <div class="slide-img overflow-hidden" style="background-image:url({{slide?.iconTopPath}})">
+                                <img [src]="slide?.iconTopPath" alt="img" class="w-100 h-100">
+                            </div>
+                            <h3 class="slide-title">{{slide.nameEn}}</h3>
                         </a>
                     </div>
                 </ngx-slick-carousel>
@@ -78,27 +81,12 @@
             </div>
             <div class="section-content">
                 <ngx-slick-carousel class="carousel cat-slider" #slickModal3="slick-carousel" [config]="slideConfig3">
-                    <div ngxSlickItem *ngFor="let slide of [1,2,3]" class="slide">
+                    <div ngxSlickItem *ngFor="let slide of productsSort" class="slide">
                         <a class="cat-slide" href="#">
                             <div class="slide-daily-img">
-                                <img src="../../../assets/images/Capture2.PNG" alt="img" class="w-100">
+                                <img [src]="slide.imagePath" alt="img" class="w-100 h-100">
                             </div>
-                            <!-- <h3 class="slide-title">{{slide.name}}</h3> -->
-                        </a>
-                    </div>
-                    <div ngxSlickItem *ngFor="let slide of [1,2,3]" class="slide">
-                        <a class="cat-slide" href="#">
-                            <div class="slide-daily-img">
-                                <img src="../../../assets/images/Capture3.PNG" alt="img" class="w-100">
-                            </div>
-                            <!-- <h3 class="slide-title">{{slide.name}}</h3> -->
-                        </a>
-                    </div>
-                    <div ngxSlickItem *ngFor="let slide of [1,2,3]" class="slide">
-                        <a class="cat-slide" href="#">
-                            <div class="slide-daily-img">
-                                <img src="../../../assets/images/Capture2.PNG" alt="img" class="w-100">
-                            </div>
+
                             <!-- <h3 class="slide-title">{{slide.name}}</h3> -->
                         </a>
                     </div>
@@ -107,16 +95,37 @@
         </div>
     </div>
 </div>
-  
+
 <div class="row">
     <div class="col-12 main-tabs">
         <mat-tab-group>
-            <mat-tab label="Bestselling"> 
+            <mat-tab label="Top Offer">
+                <div class="p-3">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let offerItem of productsOffer">
+                            <a href="#" class="product-item">
+                                <div class="product-img" style="background-image: url({{offerItem?.imagePath}})">
+                                    <img [src]="offerItem?.imagePath" class="w-100 h-100">
+                                </div>
+
+                                <div class="product-details">
+                                    <span class="product-name">{{offerItem.nameEn}}</span>
+                                    <span class="product-price">{{offerItem.unitPrice}}</span>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Bestselling">
                 <div class="p-3">
                     <div class="row">
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -125,7 +134,8 @@
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -140,7 +150,8 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -149,7 +160,8 @@
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -164,7 +176,8 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -173,7 +186,8 @@
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -188,7 +202,8 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -197,7 +212,8 @@
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3" *ngFor="let a of [2,3,4,5,6,7]">
                             <a href="#" class="product-item">
-                                <div class="product-img" style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
+                                <div class="product-img"
+                                    style="background-image: url('../../../assets/images/Capture{{a}}.PNG');"></div>
                                 <div class="product-details">
                                     <span class="product-name">Test Product</span>
                                     <span class="product-price">20 JOD</span>
@@ -227,27 +243,14 @@
             </div>
             <div class="section-content">
                 <ngx-slick-carousel class="carousel cat-slider" #slickModal4="slick-carousel" [config]="slideConfig2">
-                    <div ngxSlickItem *ngFor="let slide of [1,2,3]" class="slide">
+                    <div ngxSlickItem *ngFor="let slide of companiesArr" class="slide">
                         <a class="cat-slide" href="#">
                             <div class="slide-daily-img">
-                                <img src="../../../assets/images/Capture8.PNG" alt="img" class="w-100">
+                                <img [src]="slide.logoPath" alt="img" class="w-100">
                             </div>
                         </a>
                     </div>
-                    <div ngxSlickItem *ngFor="let slide of [1,2,3]" class="slide">
-                        <a class="cat-slide" href="#">
-                            <div class="slide-daily-img">
-                                <img src="../../../assets/images/Capture10.PNG" alt="img" class="w-100">
-                            </div>
-                        </a>
-                    </div>
-                    <div ngxSlickItem *ngFor="let slide of [1,2,3]" class="slide">
-                        <a class="cat-slide" href="#">
-                            <div class="slide-daily-img">
-                                <img src="../../../assets/images/Capture8.PNG" alt="img" class="w-100">
-                            </div>
-                        </a>
-                    </div>
+
                 </ngx-slick-carousel>
             </div>
         </div>

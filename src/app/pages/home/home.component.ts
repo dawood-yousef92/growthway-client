@@ -13,8 +13,14 @@ export class HomeComponent implements OnInit {
   @ViewChild('slickModal2') slickModal2: SlickCarouselComponent;
   @ViewChild('slickModal3') slickModal3: SlickCarouselComponent;
   @ViewChild('slickModal4') slickModal4: SlickCarouselComponent;
-
-  categories:any[] = [];
+  dataSettings: any = {
+    searchText: "",
+    sortBy: "",
+    pageNumber: 0,
+    rowsPerPage: 0,
+    selectedPageSize: 0
+  }
+  categories: any[] = [];
   slides = [];
   slideConfig = {
     "slidesToShow": 1,
@@ -96,9 +102,9 @@ export class HomeComponent implements OnInit {
       },
     ],
   };
-  constructor(private homeService:HomeService,
-              private companiesService:CompaniesService,
-              private loderService: LoaderService,) {}
+  constructor(private homeService: HomeService,
+    private companiesService: CompaniesService,
+    private loderService: LoaderService,) { }
 
   next(num) {
     if (num === 2) {
@@ -111,7 +117,7 @@ export class HomeComponent implements OnInit {
       this.slickModal4.slickNext();
     }
   }
-  
+
   prev(num) {
     if (num === 2) {
       this.slickModal2.slickPrev();
@@ -126,10 +132,10 @@ export class HomeComponent implements OnInit {
 
   getCategoriesByBusinessType() {
     this.loderService.setIsLoading = true;
-    this.companiesService.getCategoriesByBusinessType('',3,3,true).subscribe((data) => {
+    this.companiesService.getCategoriesByBusinessType('', 3, 3, true).subscribe((data) => {
       this.categories = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
       this.loderService.setIsLoading = false;
-    },(error) => {
+    }, (error) => {
       this.loderService.setIsLoading = false;
     });
   }
@@ -156,5 +162,55 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getCategoriesByBusinessType();
     this.getBannerImages();
+    this.getTopCategories();
+    this.getTopProducts();
+    this.getTopCompanies();
+    this.getTopOfferProducts();
   }
+
+  categoriesArr: any;
+  getTopCategories() {
+    this.loderService.setIsLoading = true;
+    this.homeService.getTopCategories(this.dataSettings).subscribe((res) => {
+      this.loderService.setIsLoading = false;
+      this.categoriesArr = res.result.categoriesDtos;
+    }, (error) => {
+      this.loderService.setIsLoading = false;
+    });
+  }
+
+  productsSort: any;
+  getTopProducts() {
+    this.loderService.setIsLoading = true;
+    this.homeService.getTopProducts(this.dataSettings).subscribe((res) => {
+      this.loderService.setIsLoading = false;
+      this.productsSort = res.result.products;
+    }, (error) => {
+      this.loderService.setIsLoading = false;
+    });
+  }
+
+  productsOffer: any;
+  getTopOfferProducts() {
+    this.loderService.setIsLoading = true;
+    this.homeService.getTopOfferProducts(this.dataSettings).subscribe((res) => {
+      this.loderService.setIsLoading = false;
+      this.productsOffer = res.result.products;
+    }, (error) => {
+      this.loderService.setIsLoading = false;
+    });
+  }
+
+  companiesArr: any;
+  getTopCompanies() {
+    this.loderService.setIsLoading = true;
+    this.homeService.getTopCompanies(this.dataSettings).subscribe((res) => {
+      this.loderService.setIsLoading = false;
+      this.companiesArr = res.result.companyItems;
+
+    }, (error) => {
+      this.loderService.setIsLoading = false;
+    });
+  }
+
 }

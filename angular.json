@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "growthway-website"
+  "defaultProject": "growthway-website",
+  "cli": {
+    "analytics": false
+  }
 }
