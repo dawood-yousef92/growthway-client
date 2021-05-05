@@ -148,8 +148,10 @@ export class AddCompanyComponent implements OnInit {
   }
 
   selectCat(e,cat,type) {
-    if(this.selectedCat.includes(cat)) {
-      this.selectedCat.splice(this.selectedCat.indexOf(cat),1);
+    console.log(cat);
+    console.log(this.selectedCat);
+    if(this.selectedCat.find(item => item.id === cat.id)) {
+      this.selectedCat.splice(this.selectedCat.indexOf(this.selectedCat.find(item => item.id === cat.id)),1);
     }
     else {
       this.selectedCat.push(cat);
