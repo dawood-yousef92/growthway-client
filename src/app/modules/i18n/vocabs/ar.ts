@@ -113,6 +113,11 @@ export const locale = {
             ADD_MESSAGE: 'Customer has been created'
           }
         }
+      },
+      LOOKUPS: {
+        SUPPLIER: 'مورد',
+        SERVICEPROVIDER: 'مزود خدمة',
+        SUPPLIERANDSERVICEPROVIDER: 'مورد و مزود خدمة',
       }
     }
   };

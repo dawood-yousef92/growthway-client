@@ -149,7 +149,7 @@
                 <div class="col-md-6 mb-3">
                     <mat-form-field class="w-100 mb-3">
                         <mat-select formControlName="businessType" placeholder="Main Major Type" (selectionChange)="getCategoriesByBusinessType()" required>
-                            <mat-option *ngFor="let companyBusinessType of companyBusinessTypes" [value]="companyBusinessType.key">{{companyBusinessType.value}}</mat-option>
+                            <mat-option *ngFor="let companyBusinessType of companyBusinessTypes" [value]="companyBusinessType.key">{{'LOOKUPS.'+(companyBusinessType.value | uppercase) | translate}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <button *ngIf="createCompany.controls.businessType.value" type="button" class="btn btn-success mb-2" (click)="openModal(catModal)">Select Categories</button>
