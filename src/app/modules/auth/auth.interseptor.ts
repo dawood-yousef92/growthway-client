@@ -29,9 +29,17 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token != null) {
       request = request.clone({
         setHeaders: {
+          "Accept-Language": localStorage.getItem('language') || 'en',
           Authorization: 'Bearer ' + token.replace(/\"/g, ""),
         },
       });
+    }
+    else {
+      request = request.clone({
+        setHeaders: {
+          "Accept-Language": localStorage.getItem('language') || 'en',
+        },
+      }); 
     }
 
     return next.handle(request)
