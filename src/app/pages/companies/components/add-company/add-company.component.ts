@@ -299,7 +299,13 @@ export class AddCompanyComponent implements OnInit {
   getCategoriesByBusinessType() {
     // this.selectedCat = [];
     this.loderService.setIsLoading = true;
-    this.companiesService.getCategoriesByBusinessType(null,this.createCompany.controls.businessType.value,1,false).subscribe((data) => {
+    let filterData = {
+      id: null,
+      businessType: this.createCompany.controls.businessType.value,
+      level: 1,
+      isEagerLoaded: false
+    }
+    this.companiesService.getCategoriesByBusinessType(filterData).subscribe((data) => {
       this.categories = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
       this.createCompany.get('companyCategoryIds').setValue([]);
       this.openModal(this.catModal);
@@ -312,7 +318,24 @@ export class AddCompanyComponent implements OnInit {
   getCategoriesByBusinessTypeForEdit() {
     // this.selectedCat = [];
     this.loderService.setIsLoading = true;
-    this.companiesService.getCategoriesByBusinessType(null,this.companyItem.businessType,1,false).subscribe((data) => {
+    let searchText = (document.getElementById('searchInput') as HTMLInputElement )?.value || '';
+    let filterData = {};
+    if(searchText) {
+      filterData = {
+        searchText: searchText,
+        isEagerLoaded: true
+      }
+    }
+    else {
+      filterData = {
+        id: null,
+        searchText: searchText,
+        businessType: this.companyItem.businessType,
+        level: 1,
+        isEagerLoaded: false
+      }
+    }
+    this.companiesService.getCategoriesByBusinessType(filterData).subscribe((data) => {
       this.categories = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
       // this.categories.map((item) => {
       //   if(this.companyItem.companyCategoryIds.includes(item.id)) {
@@ -333,7 +356,13 @@ export class AddCompanyComponent implements OnInit {
     if(cat.categories.length > 0) {
       return
     }
-    this.companiesService.getCategoriesByBusinessType(cat.id,this.createCompany.controls.businessType.value,null,false).subscribe((data) => {
+    let filterData = {
+      id: cat.id,
+      businessType: this.createCompany.controls.businessType.value,
+      level: null,
+      isEagerLoaded: false
+    }
+    this.companiesService.getCategoriesByBusinessType(filterData).subscribe((data) => {
       // var a = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
       this.categories.map((item) => {
         console.log(data);
@@ -502,6 +531,10 @@ export class AddCompanyComponent implements OnInit {
         this.getCompanyById();
       }
     });
+  }
+
+  serachCat() {
+    this.getCategoriesByBusinessTypeForEdit();
   }
 
   submit() {

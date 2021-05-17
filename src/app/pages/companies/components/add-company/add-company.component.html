@@ -196,8 +196,8 @@
 <ng-template #subCat let-categories="categories">
     <ng-container *ngFor="let cat of categories">
         <ng-container *ngIf="cat.hasChildren">
-            <mat-expansion-panel (click)="getCategoriesByParentId(cat)">
-                <mat-expansion-panel-header>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header (click)="getCategoriesByParentId(cat)">
                     <mat-panel-title>
                         <!-- <mat-checkbox [checked]="isChecked(cat)" (click)="clickCat($event)" (change)="selectCat($event,cat,'main')" class="mx-2"></mat-checkbox>  -->
                         {{cat.name}}
@@ -226,17 +226,35 @@
         </button>
     </div>
     <div class="modal-body categories-modal-body">
+        <div class="d-flex">
+            <mat-form-field class="flex-fill">
+                <input id="searchInput" type="text" matInput placeholder="Search"/>
+            </mat-form-field>
+            <button type="button" class="btn btn-sm btn-success mb-3 mx-2" (click)="serachCat()">Serach Categoreis</button>
+        </div>
         <mat-accordion class="custom-tree">
-            <mat-expansion-panel *ngFor="let cat of categories">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <!-- <mat-checkbox [checked]="isChecked(cat)" (click)="clickCat($event)" (change)="selectCat($event,cat,'main')" class="mx-2"></mat-checkbox>  -->
-                        {{cat.name}}
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div *ngIf="cat.categories?.length > 0" [ngTemplateOutlet]="subCat" [ngTemplateOutletContext]="{categories:cat.categories}">
-                </div>
-            </mat-expansion-panel>
+            <ng-container *ngFor="let cat of categories">
+                <ng-container *ngIf="cat.hasChildren">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header (click)="getCategoriesByParentId(cat)">
+                            <mat-panel-title>
+                                <!-- <mat-checkbox [checked]="isChecked(cat)" (click)="clickCat($event)" (change)="selectCat($event,cat,'main')" class="mx-2"></mat-checkbox>  -->
+                                {{cat.name}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div *ngIf="cat.hasChildren" [ngTemplateOutlet]="subCat" [ngTemplateOutletContext]="{categories:cat.categories}">
+                        </div>
+                    </mat-expansion-panel>
+                </ng-container>
+                <ng-container *ngIf="!cat.hasChildren">
+                    <ng-container>
+                        <mat-panel-title class="mat-expansion-panel-header-title noSub">
+                            <mat-checkbox [checked]="isChecked(cat)" (click)="clickCat($event)" (change)="selectCat($event,cat,'sub')" class="mx-2"></mat-checkbox> 
+                            {{cat?.name}}
+                        </mat-panel-title>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
         </mat-accordion>    
     </div>
     <div class="modal-footer">

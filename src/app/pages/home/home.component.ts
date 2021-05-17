@@ -132,7 +132,13 @@ export class HomeComponent implements OnInit {
 
   getCategoriesByBusinessType() {
     this.loderService.setIsLoading = true;
-    this.companiesService.getCategoriesByBusinessType('', 3, 3, true).subscribe((data) => {
+    let filterData = {
+      id: null,
+      businessType: 3,
+      level: 3,
+      isEagerLoaded: true
+    }
+    this.companiesService.getCategoriesByBusinessType(filterData).subscribe((data) => {
       this.categories = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
       this.loderService.setIsLoading = false;
     }, (error) => {
