@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CompaniesService } from 'src/app/pages/companies/companies.service';
 import { HomeService } from 'src/app/pages/home/home.service';
 import { LookupsService } from 'src/app/pages/lookups.service';
 
@@ -9,19 +10,22 @@ import { LookupsService } from 'src/app/pages/lookups.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  showSearchBox:boolean = false;
-  showmobileMenu:boolean = false;
-  isSticky:boolean;
-  currencies:any[] = [];
-  activeCurrency:any = null;
-  username:string;
+  showSearchBox: boolean = false;
+  showmobileMenu: boolean = false;
+  isSticky: boolean;
+  currencies: any[] = [];
+  activeCurrency: any = null;
+  username: string;
+  loderService: any;
+  categories: any;
 
 
-  constructor(private homeService:HomeService,
+  constructor(private homeService: HomeService,
     private router: Router,
-    private lookupsService:LookupsService,) { }
+    private companiesService: CompaniesService,
+    private lookupsService: LookupsService,) { }
 
-  
+
   getCurrencies() {
     this.lookupsService.getCurrencies().subscribe((data) => {
       this.currencies = data.result.currencies;
@@ -34,12 +38,30 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('token')) {
+
+
+    if (localStorage.getItem('token')) {
       this.getUser();
     }
     this.getCurrencies();
     window.addEventListener('scroll', this.scroll, true);
     this.scroll;
+    this.getCategoriesByBusinessType();
+  }
+  getBannerImages() {
+    throw new Error('Method not implemented.');
+  }
+  getTopCategories() {
+    throw new Error('Method not implemented.');
+  }
+  getTopProducts() {
+    throw new Error('Method not implemented.');
+  }
+  getTopCompanies() {
+    throw new Error('Method not implemented.');
+  }
+  getTopOfferProducts() {
+    throw new Error('Method not implemented.');
   }
 
   scroll = (event): void => {
@@ -53,17 +75,27 @@ export class HeaderComponent implements OnInit {
 
   showSearch() {
     this.showSearchBox = !this.showSearchBox;
-    if(this.showSearchBox) {  
-      setTimeout(function(){
+    if (this.showSearchBox) {
+      setTimeout(function () {
         let element = document.getElementById('searchBox');
         element.focus();
-      },100);
+      }, 100);
     }
+  }
+  getCategoriesByBusinessType() {
+    //this.loderService.setIsLoading = true;
+    this.companiesService.getCategoriesByBusinessType('', 3, 3, true).subscribe((data) => {
+
+      this.categories = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
+      //this.loderService.setIsLoading = false;
+    }, (error) => {
+      // this.loderService.setIsLoading = false;
+    });
   }
 
   checkIfEnter(e) {
-    if(e.key == 'Enter') {
-        alert('serach');
+    if (e.key == 'Enter') {
+      alert('serach');
     }
   }
 
@@ -72,7 +104,7 @@ export class HeaderComponent implements OnInit {
   }
 
   checkIfLogin() {
-    if(localStorage.getItem('token')) {
+    if (localStorage.getItem('token')) {
       return true;
     }
     else {
