@@ -46,7 +46,7 @@ export const locale = {
       My_Companies: 'شركاتي',
       My_Profile: 'ملفي',
       SEARCH: 'بحث',
-      BE_SUPPLIER: 'كن موردا',
+      BE_SUPPLIER: 'شركاتي',
       Orders_Cart: 'سلة / الطلبات',
       Login: 'تسجيل الدخول',
       Logout: 'تسجيل الخروج',

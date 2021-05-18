@@ -130,21 +130,21 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getCategoriesByBusinessType() {
-    this.loderService.setIsLoading = true;
-    let filterData = {
-      id: null,
-      businessType: 3,
-      level: 3,
-      isEagerLoaded: true
-    }
-    this.companiesService.getCategoriesByBusinessType(filterData).subscribe((data) => {
-      this.categories = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
-      this.loderService.setIsLoading = false;
-    }, (error) => {
-      this.loderService.setIsLoading = false;
-    });
-  }
+  // getCategoriesByBusinessType() {
+  //   this.loderService.setIsLoading = true;
+  //   let filterData = {
+  //     id: null,
+  //     businessType: 3,
+  //     level: 3,
+  //     isEagerLoaded: true
+  //   }
+  //   this.companiesService.getCategoriesByBusinessType(filterData).subscribe((data) => {
+  //     this.categories = data.result.productsCategoryItem.concat(data.result.servicesCategoryItem);
+  //     this.loderService.setIsLoading = false;
+  //   }, (error) => {
+  //     this.loderService.setIsLoading = false;
+  //   });
+  // }
 
   getBannerImages() {
     this.loderService.setIsLoading = true;
@@ -166,7 +166,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCategoriesByBusinessType();
+    // this.getCategoriesByBusinessType();
     this.getBannerImages();
     this.getTopCategories();
     this.getTopProducts();
