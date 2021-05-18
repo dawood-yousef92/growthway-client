@@ -26,6 +26,18 @@ const routes: Routes = [
           import('./shipping-addresses/shipping-addresses.module').then((m) => m.ShippingAddressesModule),
       },
       {
+        path: 'about-us',
+        // canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./about-us/about-us.module').then((m) => m.AboutUsModule),
+      },
+      {
+        path: 'faq',
+        // canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./faq/faq.module').then((m) => m.FaqModule),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

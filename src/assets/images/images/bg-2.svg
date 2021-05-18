@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1605.889" height="1078.899" viewBox="0 0 1605.889 1078.899">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.437" y1="0.219" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#75a23e"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_17310" data-name="Rectangle 17310" width="1470.893" height="767.696" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="bg2" transform="translate(122.944 -1704.55)">
+    <path id="Path_606" data-name="Path 606" d="M0,543.546,1439.516,418.053l.484-642.4L0-58.2Z" transform="translate(0 2156.347)" opacity="0.47" fill="url(#linear-gradient)"/>
+    <g id="bg-Logo_line" data-name="bg-Logo line" transform="translate(-332.287 1493.194) rotate(13)" opacity="0.84">
+      <g id="Group_2309" data-name="Group 2309" transform="translate(419.79 120)" clip-path="url(#clip-path)">
+        <g id="Group_2308" data-name="Group 2308" transform="translate(3.482 46.799)">
+          <path id="Path_13024" data-name="Path 13024" d="M420.08,446C706.837,273.85,1036.1,104.8,1304.609,114.978c190.332,7.191,351.842,95.921,481.532,219.5A1161.062,1161.062,0,0,1,1905.5,467.793a1174.769,1174.769,0,0,1-123.685,130c-134.372,120.15-297.8,203.9-488.977,205.671C1024.336,806,700.833,626.444,420.08,446" transform="translate(-420.08 275.453)" fill="none" stroke="#36793c" stroke-miterlimit="10" stroke-width="0.71" fill-rule="evenodd"/>
+          <path id="Path_13025" data-name="Path 13025" d="M457.43,90.519C728.577,87.974,1057,122.16,1231.6,234.344c123.685,79.436,190.571,202.13,220.232,335.445a839.292,839.292,0,0,1,18.012,135.86,1054.973,1054.973,0,0,1-142.658,38.28c-145.3,27.548-293,19.361-421.491-54.322C725.575,585.942,561.663,321.193,457.431,90.629" transform="translate(-8.921 32.397)" fill="none" stroke="#85bd41" stroke-miterlimit="10" stroke-width="0.71" fill-rule="evenodd"/>
+          <path id="Path_13026" data-name="Path 13026" d="M546.495,79.29C708.366,178.861,888.01,322.687,942.768,454.9c38.187,93.487,24.017,191.288-17.651,281.455a646.706,646.706,0,0,1-49.354,87.4,752.976,752.976,0,0,1-101.591-30.867c-98.227-38.058-182.285-98.355-226-190.292-61.242-129.222-41.188-347.5-1.081-523.3" transform="translate(562.109 -79.29)" fill="none" stroke="#a5ce3a" stroke-miterlimit="10" stroke-width="0.71" fill-rule="evenodd"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
