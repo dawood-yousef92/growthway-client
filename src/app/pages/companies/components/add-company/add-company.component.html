@@ -104,7 +104,7 @@
                 <div class="col-md-6 mb-3">
                     <mat-form-field class="w-100">
                         <input formControlName="phone" type="text" matInput placeholder="Phone" required/>
-                        <span *ngIf="getCountryCode()" matPrefix class="mr-4">+{{getCountryCode()}}</span>  
+                        <span *ngIf="getCountryCode() && !companyId" matPrefix class="mr-4">+{{getCountryCode()}}</span>  
                         <mat-error
                             [ngTemplateOutlet]="formError"
                             [ngTemplateOutletContext]="{
@@ -118,7 +118,7 @@
                 <div class="col-md-6 mb-3">
                     <mat-form-field class="w-100">
                         <input formControlName="mobile" type="text" matInput placeholder="Mobile" required/>
-                        <span *ngIf="getCountryCode()" matPrefix class="mr-4">+{{getCountryCode()}}</span>  
+                        <span *ngIf="getCountryCode() && !companyId" matPrefix class="mr-4">+{{getCountryCode()}}</span>  
                         <mat-error
                             [ngTemplateOutlet]="formError"
                             [ngTemplateOutletContext]="{

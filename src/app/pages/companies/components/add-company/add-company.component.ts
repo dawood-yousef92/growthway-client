@@ -85,15 +85,15 @@ export class AddCompanyComponent implements OnInit {
       phone: [
         this.companyItem?.phone || '',
         Validators.compose([
-          Validators.pattern("[0-9]+"),
-          Validators.maxLength(11),
+          Validators.pattern("[+0-9]+"),
+          Validators.maxLength(15),
         ]),
       ],
       mobile: [
         this.companyItem?.mobile || '',
         Validators.compose([
-          Validators.pattern("[0-9]+"),
-          Validators.maxLength(11),
+          Validators.pattern("[+0-9]+"),
+          Validators.maxLength(15),
         ]),
       ],
       countryId: [
@@ -556,8 +556,6 @@ export class AddCompanyComponent implements OnInit {
     formData.append('description',this.createCompany.controls.description.value);
     formData.append('buildingNo',this.createCompany.controls.buildingNo.value);
     formData.append('street',this.createCompany.controls.street.value);
-    formData.append('phone',this.createCompany.controls.phone.value);
-    formData.append('mobile',this.createCompany.controls.mobile.value);
     formData.append('countryId',this.createCompany.controls.countryId.value);
     formData.append('cityId',this.createCompany.controls.cityId.value);
     formData.append('currencyId',this.createCompany.controls.currencyId.value);
@@ -574,6 +572,14 @@ export class AddCompanyComponent implements OnInit {
     if(this.companyId) {
       formData.append('id',this.companyId);
       formData.append('verified',this.companyItem?.verified);
+      if(this.createCompany.controls.phone.value.includes(this.getCountryCode())) {
+        formData.append('phone',this.createCompany.controls.phone.value);
+        formData.append('mobile',this.createCompany.controls.mobile.value);
+      }
+      else {
+        formData.append('phone','+'+this.getCountryCode()+this.createCompany.controls.phone.value);
+        formData.append('mobile','+'+this.getCountryCode()+this.createCompany.controls.mobile.value);
+      }
       for(let i =0; i < this.companyItem?.companyDocuments.length; i++){
         formData.append("attachmentIds", this.companyItem?.companyDocuments[i].id);
       }
@@ -593,6 +599,8 @@ export class AddCompanyComponent implements OnInit {
       });
     }
     else {
+      formData.append('phone','+'+this.getCountryCode()+this.createCompany.controls.phone.value);
+      formData.append('mobile','+'+this.getCountryCode()+this.createCompany.controls.mobile.value);
       this.companiesService.createCompany(formData).subscribe((data) => {
         this.loderService.setIsLoading = false;
         this.toaster.success(data.result);
