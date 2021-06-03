@@ -35,12 +35,13 @@ export class AuthService {
     );
   }
 
-  register(email: string, name: string, phoneNumber:string, password: string, confirmPassword: string, isCustomer:boolean): Observable<any> {
+  register(email: string, name: string, countryId:string, phoneNumber:string, password: string, confirmPassword: string, isCustomer:boolean): Observable<any> {
     return this.httpClient.post(
       `Account/Register`,
       {
         email,
         name,
+        countryId,
         phoneNumber,
         password,
         confirmPassword,

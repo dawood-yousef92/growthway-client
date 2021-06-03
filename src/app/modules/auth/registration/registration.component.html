@@ -75,8 +75,41 @@
           ></ng-container>
         </div>
         <div class="form-group">
-          <label class="font-size-h6 font-weight-bolder text-dark">phone</label>
-          <input class="form-control" type="text" placeholder="Enter your phone number" name="phoneNumber" formControlName="phoneNumber" autocomplete="off" [ngClass]="{ 'is-invalid': registrationForm.controls['phoneNumber'].invalid }"/>
+          <label class="font-size-h6 font-weight-bolder text-dark">Country</label>
+          <!-- <select class="form-control px-4" placeholder="Select Country" name="countryId" formControlName="countryId" autocomplete="off" [ngClass]="{ 'is-invalid': registrationForm.controls['countryId'].invalid }" required>
+            <option value="">Select Country</option>
+            <option *ngFor="let country of countries" [value]="country.id">
+              <span class="symbol symbol-20 mr-3"><img [src]="country.flag"></span>{{country.name}}
+            </option>
+          </select> -->
+          <mat-select class="form-control" name="countryId" formControlName="countryId" [ngClass]="{ 'is-invalid': registrationForm.controls['countryId'].invalid }">
+              <mat-option value="">Select Country</mat-option>
+              <mat-option *ngFor="let country of countries" [value]="country.id">
+                  <div class="d-flex align-items-center">
+                      <span class="symbol symbol-20 mr-3"><img [src]="country.flag"></span>{{country.name}}
+                  </div>
+              </mat-option>
+          </mat-select>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Country is required',
+              control: registrationForm.controls['countryId']
+            }"
+          ></ng-container>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-4 pr-1">
+              <label class="font-size-h6 font-weight-bolder text-dark">Country Code</label>
+              <input class="form-control" type="text" matInput value="{{getCountryCode()}}" disabled/>
+            </div>
+            <div class="col-8 pl-1">
+              <label class="font-size-h6 font-weight-bolder text-dark">phone</label>
+              <input class="form-control" placeholder="Enter your phone number" formControlName="phoneNumber" type="text" matInput placeholder="Phone" autocomplete="off" [ngClass]="{ 'is-invalid': registrationForm.controls['phoneNumber'].invalid }"/>
+            </div>
+          </div>
           <ng-container
             [ngTemplateOutlet]="formError"
             [ngTemplateOutletContext]="{

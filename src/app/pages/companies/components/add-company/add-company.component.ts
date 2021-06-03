@@ -559,6 +559,8 @@ export class AddCompanyComponent implements OnInit {
     formData.append('countryId',this.createCompany.controls.countryId.value);
     formData.append('cityId',this.createCompany.controls.cityId.value);
     formData.append('currencyId',this.createCompany.controls.currencyId.value);
+    formData.append('phone',this.createCompany.controls.phone.value);
+    formData.append('mobile',this.createCompany.controls.mobile.value);
     for(let i = 0; i < cats.length; i++){
       formData.append("companyCategoryIds", cats[i]);
     }
@@ -572,14 +574,14 @@ export class AddCompanyComponent implements OnInit {
     if(this.companyId) {
       formData.append('id',this.companyId);
       formData.append('verified',this.companyItem?.verified);
-      if(this.createCompany.controls.phone.value.includes(this.getCountryCode())) {
-        formData.append('phone',this.createCompany.controls.phone.value);
-        formData.append('mobile',this.createCompany.controls.mobile.value);
-      }
-      else {
-        formData.append('phone','+'+this.getCountryCode()+this.createCompany.controls.phone.value);
-        formData.append('mobile','+'+this.getCountryCode()+this.createCompany.controls.mobile.value);
-      }
+      // if(this.createCompany.controls.phone.value.includes(this.getCountryCode())) {
+      //   formData.append('phone',this.createCompany.controls.phone.value);
+      //   formData.append('mobile',this.createCompany.controls.mobile.value);
+      // }
+      // else {
+      //   formData.append('phone','+'+this.getCountryCode()+this.createCompany.controls.phone.value);
+      //   formData.append('mobile','+'+this.getCountryCode()+this.createCompany.controls.mobile.value);
+      // }
       for(let i =0; i < this.companyItem?.companyDocuments.length; i++){
         formData.append("attachmentIds", this.companyItem?.companyDocuments[i].id);
       }
@@ -599,8 +601,8 @@ export class AddCompanyComponent implements OnInit {
       });
     }
     else {
-      formData.append('phone','+'+this.getCountryCode()+this.createCompany.controls.phone.value);
-      formData.append('mobile','+'+this.getCountryCode()+this.createCompany.controls.mobile.value);
+      // formData.append('phone','+'+this.getCountryCode()+this.createCompany.controls.phone.value);
+      // formData.append('mobile','+'+this.getCountryCode()+this.createCompany.controls.mobile.value);
       this.companiesService.createCompany(formData).subscribe((data) => {
         this.loderService.setIsLoading = false;
         this.toaster.success(data.result);

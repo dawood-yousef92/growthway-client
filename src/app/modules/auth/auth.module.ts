@@ -13,6 +13,9 @@ import { ChangeLanguageComponent } from './change-language/change-language.compo
 import { AuthService } from './_services/auth.service';
 import { AuthInterceptor } from './auth.interseptor';
 import { EmailConfigComponent } from './email-config/email-config.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { EmailConfigComponent } from './email-config/email-config.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [AuthService,
     {

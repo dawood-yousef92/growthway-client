@@ -85,9 +85,10 @@ export class HeaderComponent implements OnInit {
   getCategoriesByBusinessType() {
     //this.loderService.setIsLoading = true;
     let filterData = {
-      "businessType": 3,
-      "level": 3,
-      "isEagerLoaded": true
+      businessType: 1,
+      id: null,
+      isEagerLoaded: true,
+      level: 3,
     }
     this.companiesService.getCategoriesByBusinessType(filterData).subscribe((data) => {
 

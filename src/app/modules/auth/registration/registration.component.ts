@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ConfirmPasswordValidator } from './confirm-password.validator';
 import { first } from 'rxjs/operators';
 import { LoaderService } from '../_services/loader.service';
+import { LookupsService } from 'src/app/pages/lookups.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,12 +17,14 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   successMessage:string;
   activationLink:string;
+  countries:any;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private loderService: LoaderService
+    private loderService: LoaderService,
+    private lookupsService: LookupsService
   ) {
     if (localStorage.getItem("token")) {
       this.router.navigate(['/home']);
@@ -29,7 +32,21 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCountries();
     this.initForm();
+  }
+
+  getCountries() {
+    this.lookupsService.getCountries().subscribe((data) => {
+      this.countries = data.result.countries;
+    });
+  }
+
+  getCountryCode() {
+    if(this.countries?.find(item => item?.id === this.f.countryId.value)?.countryCode) {
+      return '+'+this.countries.find(item => item?.id === this.f.countryId.value)?.countryCode;
+    }
+    return;
   }
 
   get f() {
@@ -49,6 +66,12 @@ export class RegistrationComponent implements OnInit {
           ]),
         ],
         name: [
+          '',
+          Validators.compose([
+            Validators.required,
+          ]),
+        ],
+        countryId: [
           '',
           Validators.compose([
             Validators.required,
@@ -88,7 +111,7 @@ export class RegistrationComponent implements OnInit {
 
   submit() {
     this.loderService.setIsLoading = true;
-    this.authService.register(this.f.email.value, this.f.name.value, this.f.phoneNumber.value, this.f.password.value, this.f.cPassword.value, true)
+    this.authService.register(this.f.email.value, this.f.name.value, this.f.countryId.value, this.f.phoneNumber.value, this.f.password.value, this.f.cPassword.value, true)
       .pipe(first())
       .subscribe((data: any) => {
         this.loderService.setIsLoading = false;

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { LoaderService } from 'src/app/modules/auth/_services/loader.service';
 import { CompaniesService } from '../companies/companies.service';
@@ -104,7 +105,8 @@ export class HomeComponent implements OnInit {
   };
   constructor(private homeService: HomeService,
     private companiesService: CompaniesService,
-    private loderService: LoaderService,) { }
+    private loderService: LoaderService,
+    private router: Router) { }
 
   next(num) {
     if (num === 2) {
@@ -166,6 +168,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.navigate(['/companies']);
     // this.getCategoriesByBusinessType();
     this.getBannerImages();
     this.getTopCategories();
