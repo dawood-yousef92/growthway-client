@@ -330,7 +330,7 @@ export class AddCompanyComponent implements OnInit {
       filterData = {
         id: null,
         searchText: searchText,
-        businessType: this.companyItem.businessType,
+        businessType: this.companyItem?.businessType,
         level: 1,
         isEagerLoaded: false
       }

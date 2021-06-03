@@ -160,7 +160,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-md-12 mb-3" *ngIf="!companyId || (companyId && !this.companyItem?.verified)">
+                <div class="col-md-12 mb-3">
                     <app-upload-images (selectedImages)="selectImages($event)" class="row"></app-upload-images>
                     <h3 *ngIf="companyId && companyItem?.companyImageItems.length > 0">Previous Images</h3>
                     <div class="row" *ngIf="companyId && companyItem?.companyImageItems">
