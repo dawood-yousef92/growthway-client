@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
 
   getCountryCode() {
     if(this.countries?.find(item => item?.id === this.f.countryId.value)?.countryCode) {
-      return '+'+this.countries.find(item => item?.id === this.f.countryId.value)?.countryCode;
+      return this.countries.find(item => item?.id === this.f.countryId.value)?.countryCode;
     }
     return;
   }

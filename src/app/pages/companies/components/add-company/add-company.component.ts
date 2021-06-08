@@ -76,6 +76,9 @@ export class AddCompanyComponent implements OnInit {
       description: [
         this.companyItem?.description || ''
       ],
+      taxFileNumber: [
+        this.companyItem?.taxFileNumber || ''
+      ],
       buildingNo: [
         this.companyItem?.buildingNo || ''
       ],
@@ -554,6 +557,7 @@ export class AddCompanyComponent implements OnInit {
     formData.append('emailAddress',this.createCompany.controls.emailAddress.value);
     formData.append('businessType',this.createCompany.controls.businessType.value);
     formData.append('description',this.createCompany.controls.description.value);
+    formData.append('taxFileNumber',this.createCompany.controls.taxFileNumber.value);
     formData.append('buildingNo',this.createCompany.controls.buildingNo.value);
     formData.append('street',this.createCompany.controls.street.value);
     formData.append('countryId',this.createCompany.controls.countryId.value);

@@ -102,31 +102,40 @@
                     </mat-form-field>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <mat-form-field class="w-100">
-                        <input formControlName="phone" type="text" matInput placeholder="Phone" required/>
-                        <span *ngIf="getCountryCode()" matPrefix class="mr-4">+{{getCountryCode()}}</span>  
-                        <mat-error
-                            [ngTemplateOutlet]="formError"
-                            [ngTemplateOutletContext]="{
-                            validation: 'pattern',
-                            message: 'Phone is invalid',
-                            control: createCompany.controls['phone']
-                            }"
-                        ></mat-error>
-                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <mat-form-field class="w-100">
+                                <input formControlName="phone" type="text" matInput placeholder="Phone" required/>
+                                <span *ngIf="getCountryCode()" matPrefix class="mr-4">{{getCountryCode()}}</span>  
+                                <mat-error
+                                    [ngTemplateOutlet]="formError"
+                                    [ngTemplateOutletContext]="{
+                                    validation: 'pattern',
+                                    message: 'Phone is invalid',
+                                    control: createCompany.controls['phone']
+                                    }"
+                                ></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <mat-form-field class="w-100">
+                                <input formControlName="mobile" type="text" matInput placeholder="Mobile" required/>
+                                <span *ngIf="getCountryCode()" matPrefix class="mr-4">{{getCountryCode()}}</span>  
+                                <mat-error
+                                    [ngTemplateOutlet]="formError"
+                                    [ngTemplateOutletContext]="{
+                                    validation: 'pattern',
+                                    message: 'Mobile is invalid',
+                                    control: createCompany.controls['mobile']
+                                    }"
+                                ></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <mat-form-field class="w-100">
-                        <input formControlName="mobile" type="text" matInput placeholder="Mobile" required/>
-                        <span *ngIf="getCountryCode()" matPrefix class="mr-4">+{{getCountryCode()}}</span>  
-                        <mat-error
-                            [ngTemplateOutlet]="formError"
-                            [ngTemplateOutletContext]="{
-                            validation: 'pattern',
-                            message: 'Mobile is invalid',
-                            control: createCompany.controls['mobile']
-                            }"
-                        ></mat-error>
+                        <input formControlName="taxFileNumber" type="text" matInput placeholder="Tax File Number"/>
                     </mat-form-field>
                 </div>
                 <div class="col-md-6 mb-3" *ngIf="!companyId || (companyId && !this.companyItem?.verified)">
