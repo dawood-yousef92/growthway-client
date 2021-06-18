@@ -29,6 +29,7 @@ export class AddCompanyComponent implements OnInit {
   countries:any[] = [];
   cities:any[] = [];
   currencies:any[] = [];
+  paymentMethods:any[] = [];
   categoriesFilter:string = '';
   subCategoriesFilter:string = '';
   countriesFilter:string = '';
@@ -107,6 +108,9 @@ export class AddCompanyComponent implements OnInit {
       ],
       currencyId: [
         this.companyItem?.currencyId || 'd755b09c-0ce3-4bc7-353f-08d8f772fcd0'
+      ],
+      paymentMethodsIds: [
+        this.companyItem?.selectedPaymentMethodsIds || []
       ],
       companyCategoryIds: [
         []
@@ -432,6 +436,12 @@ export class AddCompanyComponent implements OnInit {
     });
   }
 
+  getPaymentMethods() {
+    this.lookupsService.getPaymentMethods().subscribe((data) => {
+      this.paymentMethods = data.result.paymentMethodItems;
+    });
+  }
+
   getCountryCode() {
     return this.countries.find(item => item?.id === this.createCompany.controls.countryId.value)?.countryCode;
   }
@@ -528,6 +538,7 @@ export class AddCompanyComponent implements OnInit {
     this.getCompanyBusinessTypes();
     this.getCountries();
     this.getCurrencies();
+    this.getPaymentMethods();
     this.route.params.subscribe((data) => {
       this.companyId = data.id;
       if(this.companyId) {
@@ -565,6 +576,9 @@ export class AddCompanyComponent implements OnInit {
     formData.append('currencyId',this.createCompany.controls.currencyId.value);
     formData.append('phone',this.createCompany.controls.phone.value);
     formData.append('mobile',this.createCompany.controls.mobile.value);
+    for(let i = 0; i < this.createCompany.controls.paymentMethodsIds.value.length; i++){
+      formData.append("paymentMethodsIds", this.createCompany.controls.paymentMethodsIds.value[i]);
+    }
     for(let i = 0; i < cats.length; i++){
       formData.append("companyCategoryIds", cats[i]);
     }

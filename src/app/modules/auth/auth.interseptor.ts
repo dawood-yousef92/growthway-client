@@ -31,6 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
         setHeaders: {
           "Accept-Language": localStorage.getItem('language') || 'en',
           Authorization: 'Bearer ' + token.replace(/\"/g, ""),
+          // "X-Tenant": 'www',
         },
       });
     }
@@ -38,6 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           "Accept-Language": localStorage.getItem('language') || 'en',
+          // "X-Tenant": 'www',
         },
       }); 
     }

@@ -989,6 +989,17 @@ a {
     }
 }
 
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent
+    .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background: #127c3b;
+}
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #127c3b;
+}
 
 /** Header **/
 
@@ -2207,7 +2218,6 @@ ul.ruby-menu {
                                 visibility: hidden;
                                 opacity: 0;
                                 >li {
-                                    >a {}
                                     &:hover {
                                         >a {
                                             &:after {
@@ -2256,7 +2266,6 @@ ul.ruby-menu {
                                     }
                                 }
                             }
-                            >a {}
                         }
                     }
                     &:hover {
@@ -2274,7 +2283,6 @@ ul.ruby-menu {
                             }
                         }
                     }
-                    >a {}
                 }
                 >li.ruby-open-to-left {
                     >a {

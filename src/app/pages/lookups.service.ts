@@ -26,4 +26,8 @@ export class LookupsService {
         return this.http.post<any>('Lookups/GetCurrencies', {});
     }
 
+    getPaymentMethods(): Observable<any> {
+        return this.http.post<any>('Lookups/GetPaymentMethods', {});
+    }
+
 }
