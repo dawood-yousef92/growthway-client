@@ -27,7 +27,7 @@ export class ChangeLanguageComponent implements OnInit {
     {
       lang: 'ar',
       name: 'العربية',
-      flag: './assets/images/077-jordan.svg',
+      flag: './assets/images/008-saudi-arabia.svg',
     },
   ];
   constructor(

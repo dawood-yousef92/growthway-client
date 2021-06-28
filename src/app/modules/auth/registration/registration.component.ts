@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   successMessage:string;
   activationLink:string;
-  countries:any;
+  countries:any = [];
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +38,8 @@ export class RegistrationComponent implements OnInit {
 
   getCountries() {
     this.lookupsService.getCountries().subscribe((data) => {
-      this.countries = data.result.countries;
+      // this.countries = data.result.countries;
+      this.countries.push(data.result.countries.find(item => item.id === '7f4c2c35-feb9-4f6c-9159-9d9280bd047c'));
     });
   }
 
@@ -83,6 +84,7 @@ export class RegistrationComponent implements OnInit {
             Validators.required,
             Validators.pattern("[0-9]+"),
             Validators.maxLength(11),
+            Validators.minLength(10),
           ]),
         ],
         password: [
@@ -111,6 +113,12 @@ export class RegistrationComponent implements OnInit {
 
   submit() {
     this.loderService.setIsLoading = true;
+    let a = this.f.phoneNumber.value.split('');
+    if(a[0] === '0') {
+      a.splice(0, 1);
+      this.registrationForm.get('phoneNumber').setValue(a.join(''));
+    }
+
     this.authService.register(this.f.email.value, this.f.name.value, this.f.countryId.value, this.f.phoneNumber.value, this.f.password.value, this.f.cPassword.value, true)
       .pipe(first())
       .subscribe((data: any) => {
