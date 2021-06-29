@@ -190,9 +190,23 @@
                         </div>
                     </div>
                 </div>
+                <div *ngIf="!companyId" class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <label class="checkbox mb-0">
+                          <input type="checkbox" formControlName="agree" name="agree" />&nbsp;I
+                          Agree the&nbsp;<a
+                            href="../../../../../assets/files/subscribe-terms-supplier.docx"
+                            target="_blank"
+                            download
+                            >terms and conditions</a
+                          >.&nbsp;
+                          <span></span>
+                        </label>
+                      </div>
+                </div>
             </div>
             <div>
-                <button type="submit" class="btn btn-success btn-lg px-5" [disabled]="createCompany.invalid">
+                <button type="submit" class="btn btn-success btn-lg px-5" [disabled]="createCompany.invalid || !(createCompany.controls.agree.value || companyId)">
                     Save
                 </button>
             </div>

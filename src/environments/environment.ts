@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api-prod.growthway.me/api/'
-  // apiUrl: 'https://api-dev.growthway.me/api/store/'
+  // apiUrl: 'https://api-prod.growthway.me/api/'
+  apiUrl: 'https://api-dev.growthway.me/api/store/'
   // apiUrl: 'https://api.growthway.me/api',
   // apiUrl: 'https://localhost:5001/api/'
 

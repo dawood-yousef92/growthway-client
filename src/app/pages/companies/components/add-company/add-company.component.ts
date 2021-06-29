@@ -118,6 +118,7 @@ export class AddCompanyComponent implements OnInit {
       verified: [
         true
       ],
+      agree: [false, Validators.compose([Validators.required])],
     });
   }
 
