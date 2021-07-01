@@ -10,7 +10,7 @@ export class CompaniesService {
     constructor(private http: HttpClient){}
 
     getCategoriesByBusinessType(filterData): Observable<any> {
-        return this.http.post<any>('Companies/GetCategoriesByBusinessType', filterData);
+        return this.http.post<any>('Category/GetCategoriesByBusinessType', filterData);
     }
 
     createCompany(formData): Observable<any> {
