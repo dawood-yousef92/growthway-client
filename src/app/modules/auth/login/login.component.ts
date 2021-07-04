@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
       .subscribe((data: any) => {
         localStorage.setItem("token", data.result.authResponse.accessToken);
         localStorage.setItem("permissions", this.parseJwt(data.result.authResponse.accessToken).permissions);
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/companies"]);
         this.loderService.setIsLoading = false;
       },
       (error) => {
